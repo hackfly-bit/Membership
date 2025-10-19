@@ -28,6 +28,12 @@ class TemplateController extends Controller
 
     public function store(CreateTemplateRequest $request): JsonResponse
     {
+        if ($request->setting_template == 'transaksi') {
+            Template::where('setting_template', 'transaksi')->update(['setting_template' => 'broadcast']);
+        } 
+        if ($request->setting_template == 'withdraw') {
+            Template::where('setting_template', 'withdraw')->update(['setting_template' => 'broadcast']);
+        }
         $template = Template::create($request->validated());
 
         return $this->responseCreated('Template created successfully', new TemplateResource($template));
@@ -40,6 +46,13 @@ class TemplateController extends Controller
 
     public function update(UpdateTemplateRequest $request, Template $template): JsonResponse
     {
+        if ($request->setting_template == 'transaksi') {
+            Template::where('setting_template', 'transaksi')->update(['setting_template' => 'broadcast']);
+        }
+        if ($request->setting_template == 'withdraw') {
+            Template::where('setting_template', 'withdraw')->update(['setting_template' => 'broadcast']);
+        }
+
         $template->update($request->validated());
 
         return $this->responseSuccess('Template updated Successfully', new TemplateResource($template));

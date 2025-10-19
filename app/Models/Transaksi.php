@@ -25,10 +25,12 @@ class Transaksi extends Model
 		'tanggal',
 		'nominal',
 		'kategori_id',
+        'point',
 		'keterangan',
     ];
 
-	// convert "1/11/2024" to date format
+
+
 	public function setTanggalAttribute($value)
 	{
 		$this->attributes['tanggal'] = date('Y-m-d', strtotime($value));

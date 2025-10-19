@@ -12,7 +12,7 @@ class CreateTransaksiRequest extends FormRequest
             'code' => ['required', 'string'],
 			'customer_id' => ['required'],
 			'tanggal' => ['required', 'date'],
-			'nominal' => ['required', 'numeric'],
+			'nominal' => ['required', 'string'],
 			'kategori_id' => ['required'],
 			'keterangan' => ['required', 'string'],
         ];

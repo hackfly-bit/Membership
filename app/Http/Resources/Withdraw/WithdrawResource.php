@@ -13,8 +13,10 @@ class WithdrawResource extends JsonResource
             'customer_id' => $this->customer_id,
 			'point' => $this->point,
 			'wd_reason' => $this->wd_reason,
-            'created_at' => dateTimeFormat($this->created_at),
+            'created_at' => date('d-m-Y', strtotime($this->created_at)),
             'updated_at' => dateTimeFormat($this->updated_at),
+
+            
         ];
     }
 }

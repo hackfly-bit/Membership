@@ -103,44 +103,29 @@
 </head>
 
 <body>
+
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="heading">
-                <td width="10%">Code</td>
-                <td width="15%">Customer</td>
-                <td width="10%">Nomor Hp</td>    
-                <td width="10%">Tanggal</td>
-                <td width="15%">Nominal</td>
-                <td width=5%">Kategori</td>
-                <td width="5%">Point</td>
-                <td>Keterangan</td>
+                <td width="15%">Nama Customer</td>
+                <td width="15%">Nomor HP</td>
+                <td width="15%">Email</td>
+                <td width="25%">Role</td>    
+                <td width="30%">Cabang</td>
             </tr>
-         
-            {{-- total of nominal --}}
-            @php
-                $total = 0;
-            @endphp
-
-            @foreach ($transaksis as $x)
-                @php
-                    $total += $x->nominal;
-                @endphp
+        
+            @foreach ($customers as $x)
+             
                 <tr class="item @if ($loop->last) last @endif">
-                    <td>{{ $x->code }}</td>
-                    <td>{{ $x->customer->nama }}</td>
-                    <td>{{ $x->customer->nohp }}</td>
-                    <td>{{ $x->tanggal }}</td>
-                    <td>Rp. {{ number_format($x->nominal, 0, ',', '.') }}</td>
-                    <td>{{ $x->kategori->nama_kategory }}</td>
-                    <td>{{ $x->point }}</td>
-                    <td>{{ $x->keterangan }}</td>
+                    <td>{{ $x->nama }}</td>
+                    <td>{{ $x->nohp }}</td>
+                    <td>{{ $x->email }}</td>
+                    <td>{{ $x->role }}</td>
+                    <td>{{ $x->cabang->nama_cabang }}</td>
                 </tr>
             @endforeach
 
-            <tr class="total">
-                <td colspan="4"></td>
-                <td>Rp. {{ number_format($total, 0, ',', '.') }}</td>
-            </tr>
+          
         </table>
     </div>
 </body>

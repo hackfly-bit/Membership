@@ -22,13 +22,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected string $default_filters = UserFilters::class;
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-        'cabang_id',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.

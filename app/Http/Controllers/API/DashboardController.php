@@ -62,8 +62,8 @@ class DashboardController extends Controller
     {
         $dateNow = Carbon::now()->format('Y-m-d');
         if ($cabang_id == 1) {
-            $count_transaksi = Transaksi::where('created_at', $dateNow)->count();
-            $count_withdraw = Withdraw::where('created_at', $dateNow)->count();
+            $count_transaksi = Transaksi::whereDate('created_at', $dateNow)->count();
+            $count_withdraw = Withdraw::whereDate('created_at', $dateNow)->count();
         } else {
             $transaksi = Transaksi::with('customer')->whereHas('customer', function ($query) use ($cabang_id) {
                 $query->where('cabang_id', $cabang_id);

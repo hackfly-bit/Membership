@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Filters\TemplateFilters;
+use App\Filters\PengumumanFilters;
 use Essa\APIToolKit\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Template extends Model
+class Pengumuman extends Model
 {
     use HasFactory, Filterable;
 
-    protected string $default_filters = TemplateFilters::class;
+    protected string $default_filters = PengumumanFilters::class;
 
     /**
      * Mass-assignable attributes.
@@ -21,8 +21,7 @@ class Template extends Model
      */
     protected $fillable = [
         'judul',
-		'message',
-        'setting_template',
+		'isi',
     ];
 
 

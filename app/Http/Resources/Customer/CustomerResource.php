@@ -14,12 +14,13 @@ class CustomerResource extends JsonResource
 			'nohp' => $this->nohp,
 			'email' => $this->email,
 			'role' => $this->role,
+            'cabang_id' => $this->cabang_id,
 			'cabang' => $this->cabang->nama_cabang ?? null,
             'created_at' => dateTimeFormat($this->created_at),
             'updated_at' => dateTimeFormat($this->updated_at),
             'nominal_belanja' => $this->countPointTransaksi($this->transaksi),
             // get point from relational transaksi with category
-            'point' => $this->getPoint($this->transaksi),
+            'point' => ($this->getPoint($this->transaksi) - $this->getWdPoint($this->withdraw)),
             'transaksi_data' => $this->transaksi,
         ];
     }
@@ -45,7 +46,21 @@ class CustomerResource extends JsonResource
 
         $total = 0;
         foreach ($transaksi as $item) {
-            $total += $item->kategori->point;
+            $total += $item->point ?? 0;
+        }
+        return $total;
+    }
+
+
+    function getWdPoint($withdraw)
+    {
+        if (empty($withdraw)) {
+            return 0;
+        }
+
+        $total = 0;
+        foreach ($withdraw as $item) {
+            $total += $item->point;
         }
         return $total;
     }

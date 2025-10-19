@@ -12,7 +12,7 @@ class UpdateTransaksiRequest extends FormRequest
             'code' => ['sometimes', 'string'],
 			'customer_id' => ['sometimes'],
 			'tanggal' => ['sometimes', 'date'],
-			'nominal' => ['sometimes', 'numeric'],
+			'nominal' => ['sometimes', 'string'],
 			'kategori_id' => ['sometimes'],
 			'keterangan' => ['sometimes', 'string'],
         ];

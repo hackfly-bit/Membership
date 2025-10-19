@@ -8,9 +8,9 @@ use Essa\APIToolKit\Filters\QueryFilters;
 
 class TransaksiFilters extends QueryFilters
 {
-    use DateFilter;
-    protected string $dateColumnName = 'tanggal';
-    protected array $allowedSorts = ['tanggal'];
+    // use DateFilter;
+    // protected string $dateColumnName = 'tanggal';
+    // protected array $allowedSorts = ['tanggal'];
     // protected array $allowedFilters = ['cabang_id'];
     // protected array $allowedIncludes = ['customer'];
 

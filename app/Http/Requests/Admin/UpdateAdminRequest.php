@@ -13,6 +13,9 @@ class UpdateAdminRequest extends FormRequest
             'email' => ['required', 'string'],
             'role' => ['required', 'string'],
             'password' => ['required', 'string'],
+            'cabang_id' => ['required', 'integer'],
+            'token_wa' => ['required', 'string'],
+
         ];
     }
 }

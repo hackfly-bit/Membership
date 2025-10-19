@@ -11,6 +11,7 @@ class UpdateTemplateRequest extends FormRequest
         return [
             'judul' => ['sometimes', 'string'],
 			'message' => ['sometimes', 'string'],
+            'setting_template' => ['sometimes','string'],
         ];
     }
 }

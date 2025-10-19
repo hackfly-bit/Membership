@@ -21,10 +21,10 @@ class CabangController extends Controller
 
     public function index(): AnonymousResourceCollection
     {   
-        $cabangId = request()->cabang_id ?? null;
+        $cabangId = request()->cabangId ?? null;
 
         if($cabangId == 1){
-            $cabangs = Cabang::useFilters()->dynamicPaginate();
+            $cabangs = Cabang::all();
         }else{
             $cabangs = Cabang::where('id', $cabangId)->useFilters()->dynamicPaginate();
         }

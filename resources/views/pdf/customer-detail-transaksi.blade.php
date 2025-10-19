@@ -119,11 +119,13 @@
             {{-- total of nominal --}}
             @php
                 $total = 0;
+                $total_point = 0;
             @endphp
 
-            @foreach ($transaksis as $x)
+            @foreach ($transaksi as $x)
                 @php
                     $total += $x->nominal;
+                    $total_point += $x->point;
                 @endphp
                 <tr class="item @if ($loop->last) last @endif">
                     <td>{{ $x->code }}</td>
@@ -140,6 +142,47 @@
             <tr class="total">
                 <td colspan="4"></td>
                 <td>Rp. {{ number_format($total, 0, ',', '.') }}</td>
+                <td></td>
+                <td> Total Point {{ $total_point }} </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="heading">
+                <td width="15%">Nama Customer</td>
+                <td width="15%">Nomor HP</td>
+                <td width="25%">Point WD</td>
+                <td width="25%">Keterangan</td>    
+                <td width="15%">Tanggal</td>
+            </tr>
+         
+            {{-- total of nominal --}}
+            @php
+                $totalWD = 0;
+            @endphp
+
+            @foreach ($withdraw as $x)
+                @php
+                    $totalWD += $x->point;
+                @endphp
+                <tr class="item @if ($loop->last) last @endif">
+                    <td>{{ $x->customer->nama }}</td>
+                    <td>{{ $x->customer->nohp }}</td>
+                    <td>{{ $x->point }}</td>
+                    <td>{{ $x->wd_reason }}</td>
+                    <td>{{ $x->created_at }}</td>
+                </tr>
+            @endforeach
+
+            <tr class="total">
+                <td colspan="2"></td>
+                <td>{{ number_format($totalWD, 0, ',', '.') }} Point</td>
+            </tr>
+            <tr class="total">
+                <td colspan="2"></td>
+                <td>Point Saat Ini  {{ $total_point - $totalWD }} Point</td>
             </tr>
         </table>
     </div>

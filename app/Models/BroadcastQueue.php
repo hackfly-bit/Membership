@@ -2,28 +2,24 @@
 
 namespace App\Models;
 
-use App\Filters\TemplateFilters;
+use App\Filters\CabangFilters;
 use Essa\APIToolKit\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Template extends Model
+class BroadcastQueue extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory;
 
-    protected string $default_filters = TemplateFilters::class;
 
     /**
      * Mass-assignable attributes.
      *
      * @var array
      */
-    protected $fillable = [
-        'judul',
-		'message',
-        'setting_template',
-    ];
+    protected $guarded = ['id'];
+    protected $table = 'broadcast_queue';
 
 
 }

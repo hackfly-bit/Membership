@@ -11,6 +11,7 @@ class CreateTemplateRequest extends FormRequest
         return [
             'judul' => ['required', 'string'],
 			'message' => ['required', 'string'],
+            'setting_template' => ['sometimes','string'],
         ];
     }
 }

@@ -4,13 +4,10 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithTitle;
 
-class TransaksiExport implements FromCollection, WithHeadings
+class TransaksiExport implements FromCollection, WithHeadings, WithTitle
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-
     protected $data;
 
     public function __construct($data)
@@ -20,7 +17,19 @@ class TransaksiExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return collect($this->data);
+        // Convert data to a collection
+        $collection = collect($this->data);
+
+        // Calculate the sum of the 'Nominal' column
+        $sum = $collection->sum('Nominal');
+        $sumPoint = $collection->sum('Point');
+
+        // Append the sum as the last row
+        $collection->push([
+            '', '', '', '', $sum, '', $sumPoint, '', '', ''
+        ]);
+
+        return $collection;
     }
 
     public function headings(): array
@@ -37,5 +46,10 @@ class TransaksiExport implements FromCollection, WithHeadings
             'Created At',
             'Updated At',
         ];
+    }
+
+    public function title(): string
+    {
+        return 'History Transaksi';
     }
 }
