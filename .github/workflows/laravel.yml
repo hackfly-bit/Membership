@@ -18,25 +18,25 @@ jobs:
         with:
           php-version: '8.2'
 
-      - name: Set Node.js version
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24.3.0'
+      # - name: Set Node.js version
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '24.3.0'
 
-      - name: Check Node and npm version
-        run: |
-          node -v
-          npm -v
+      # - name: Check Node and npm version
+      #   run: |
+      #     node -v
+      #     npm -v
 
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
-      - name: Install NPM dependencies and build assets
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-            npm run build
-          fi
+      # - name: Install NPM dependencies and build assets
+      #   run: |
+      #     if [ -f package.json ]; then
+      #       npm ci
+      #       npm run build
+      #     fi
 
       - name: Laravel optimizations
         run: |
